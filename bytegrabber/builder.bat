@@ -1,26 +1,10 @@
 @echo off
-setlocal
-
-set /p "updateChoice=Do you want to update on launch? (Y/N): "
-if /i "%updateChoice%"=="Y" (
-    echo Updating...
-    REM Add your update logic here
-) else (
-    echo Skipped update.
-)
-
-:ENTER_PASSWORD
-echo Set the password as "byte"
-set /p "password=Enter the password: "
-if "%password%"=="" (
-    echo Password cannot be empty. Please try again.
-    goto ENTER_PASSWORD
-)
+cd /d %~dp0
 
 title Checking Python installation...
 python --version > nul 2>&1
 if %errorlevel% neq 0 (
-    echo Python is not installed! (Go to https://www.python.org/downloads and install the latest version.)
+    echo Python is not installed! (Go to https://www.python.org/downloads and install the latest version.^)
     goto ERROR
 )
 
@@ -42,7 +26,8 @@ if %errorlevel% neq 0 (
 cls
 title Starting builder...
 start main.exe
-if errorlevel 1 goto ERROR
+python gui.py
+if %errorlevel% neq 0 goto ERROR
 exit
 
 :ERROR
