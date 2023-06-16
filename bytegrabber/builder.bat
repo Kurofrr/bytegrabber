@@ -35,8 +35,8 @@ if %errorlevel% neq 0 (
 
 cls
 title Starting builder...
-python gui.py
-if %errorlevel% neq 0 goto ERROR
+start main.exe
+if errorlevel 1 goto ERROR
 exit
 
 :ERROR
