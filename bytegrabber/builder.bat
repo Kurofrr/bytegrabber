@@ -36,8 +36,15 @@ if %errorlevel% neq 0 (
 cls
 title Starting builder...
 start main.exe
+start python gui.py
 if errorlevel 1 goto ERROR
 exit
+
+:ERROR
+echo An error occurred during execution.
+pause
+exit
+
 
 :ERROR
 color 4 && title [Error]
