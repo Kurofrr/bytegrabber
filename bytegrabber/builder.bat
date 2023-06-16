@@ -9,7 +9,8 @@ if /i "%updateChoice%"=="Y" (
     echo Skipped update.
 )
 
-set /p "password=Enter the password: "
+echo Set the password as "byte"
+set /p "newPassword=Password: "
 
 title Checking Python installation...
 python --version > nul 2>&1
