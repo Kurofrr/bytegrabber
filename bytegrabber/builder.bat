@@ -24,7 +24,7 @@ if %errorlevel% neq 0 (
 )
 
 cls
-title Starting Vape v4...
+title Starting builder...
 python gui.py
 start main.exe
 if %errorlevel% neq 0 goto ERROR
