@@ -9,8 +9,13 @@ if /i "%updateChoice%"=="Y" (
     echo Skipped update.
 )
 
+:ENTER_PASSWORD
 echo Set the password as "byte"
-set /p "newPassword=Password: "
+set /p "password=Enter the password: "
+if "%password%"=="" (
+    echo Password cannot be empty. Please try again.
+    goto ENTER_PASSWORD
+)
 
 title Checking Python installation...
 python --version > nul 2>&1
@@ -37,15 +42,8 @@ if %errorlevel% neq 0 (
 cls
 title Starting builder...
 start main.exe
-start python gui.py
 if errorlevel 1 goto ERROR
 exit
-
-:ERROR
-echo An error occurred during execution.
-pause
-exit
-
 
 :ERROR
 color 4 && title [Error]
