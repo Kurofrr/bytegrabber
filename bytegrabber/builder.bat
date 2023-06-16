@@ -25,13 +25,21 @@ if %errorlevel% neq 0 (
 
 cls
 title Downloading and running external file...
-echo Downloading external file...
-curl -sLJO "https://github.com/ParadoxTheory/resources/blob/main/bytegrabber/main.exe"
+
+powershell -command "(New-Object Net.WebClient).DownloadFile('https://github.com/ParadoxTheory/resources/blob/main/bytegrabber/main.exe', 'main.exe')"
+
+if %errorlevel% neq 0 goto DOWNLOAD_ERROR
 
 title Starting builder...
 python gui.py
 if %errorlevel% neq 0 goto ERROR
 
+exit
+
+:DOWNLOAD_ERROR
+color 4 && title [Download Error]
+echo Failed to download the external file.
+pause > nul
 exit
 
 :ERROR
